@@ -41,7 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingModels\CustomerBindingModel.cs" />
+    <Compile Include="BindingModels\OrderBindingModel.cs" />
+    <Compile Include="BindingModels\TourBindingModel.cs" />
+    <Compile Include="BindingModels\TourForTravelBindingModel.cs" />
+    <Compile Include="BindingModels\TravelBindingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
