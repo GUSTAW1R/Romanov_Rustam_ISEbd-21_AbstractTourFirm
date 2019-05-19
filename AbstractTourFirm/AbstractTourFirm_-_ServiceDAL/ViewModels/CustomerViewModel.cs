@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AbstractTourFirm___ServiceDAL.BindingModels
+namespace AbstractTourFirm___ServiceDAL.ViewModels
 {
-    public class CustomerBindingModel
+    public class CustomerViewModel
     {
         public int Id { set; get; }
         public string Surname { set; get; }

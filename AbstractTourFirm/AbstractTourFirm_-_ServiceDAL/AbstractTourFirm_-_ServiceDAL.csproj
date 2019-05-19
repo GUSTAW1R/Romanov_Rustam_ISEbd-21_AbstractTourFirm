@@ -46,11 +46,15 @@
     <Compile Include="BindingModels\TourBindingModel.cs" />
     <Compile Include="BindingModels\TourForTravelBindingModel.cs" />
     <Compile Include="BindingModels\TravelBindingModel.cs" />
+    <Compile Include="Interface\ICustomerService.cs" />
+    <Compile Include="Interface\ITourService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\TourForTravelViewModel.cs" />
+    <Compile Include="ViewModels\TourViewModel.cs" />
+    <Compile Include="ViewModels\TravelViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
