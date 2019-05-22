@@ -16,5 +16,7 @@ namespace AbstractTourFirm___Models
         public TravelStatus Status { get; set; }
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
+        public virtual Customer Customers { set; get; }
+        public virtual Travel Travels { set; get; } 
     }
 }

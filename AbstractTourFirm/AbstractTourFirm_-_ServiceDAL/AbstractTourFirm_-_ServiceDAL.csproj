@@ -47,7 +47,9 @@
     <Compile Include="BindingModels\TourForTravelBindingModel.cs" />
     <Compile Include="BindingModels\TravelBindingModel.cs" />
     <Compile Include="Interface\ICustomerService.cs" />
+    <Compile Include="Interface\IMainService.cs" />
     <Compile Include="Interface\ITourService.cs" />
+    <Compile Include="Interface\ITravelService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
