@@ -57,6 +57,11 @@
     <Compile Include="ViewModels\TourViewModel.cs" />
     <Compile Include="ViewModels\TravelViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AbstractTourFirm_-_Models\AbstractTourFirm_-_Models.csproj">
+      <Project>{9680b0c5-14f5-41f9-8bbe-0d3d443a2490}</Project>
+      <Name>AbstractTourFirm_-_Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

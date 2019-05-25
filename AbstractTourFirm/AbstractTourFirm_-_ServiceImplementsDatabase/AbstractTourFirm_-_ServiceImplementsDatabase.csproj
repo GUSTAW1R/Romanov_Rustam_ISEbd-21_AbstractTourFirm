@@ -42,10 +42,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractTourFirmDbContext.cs" />
+    <Compile Include="Implementations\CustomerServiceDB.cs" />
+    <Compile Include="Implementations\MainServiceDB.cs" />
+    <Compile Include="Implementations\TourServiceDB.cs" />
+    <Compile Include="Implementations\TravelServiceDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Implementations\" />
+    <ProjectReference Include="..\AbstractTourFirm_-_Models\AbstractTourFirm_-_Models.csproj">
+      <Project>{9680b0c5-14f5-41f9-8bbe-0d3d443a2490}</Project>
+      <Name>AbstractTourFirm_-_Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AbstractTourFirm_-_ServiceDAL\AbstractTourFirm_-_ServiceDAL.csproj">
+      <Project>{98d89abc-6a2a-4cc1-83f7-cb88cb9e7d54}</Project>
+      <Name>AbstractTourFirm_-_ServiceDAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

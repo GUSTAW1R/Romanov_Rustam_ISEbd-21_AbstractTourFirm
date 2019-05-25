@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,5 +18,9 @@ namespace AbstractTourFirm___Models
         public bool Taxi { set; get; }
         public bool AllInclusive { set; get; }
         public bool Private_Guide { set; get; }
+        [ForeignKey("TravelId")]
+        public virtual List<TourForTravel> TourForTravels { get; set; }
+        [ForeignKey("TravelId")]
+        public virtual List<Order> Orders { get; set; }
     }
 }
