@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AbstractTourFirm___Models;
 
-namespace AbstractTourFirm___ServiceImplementsDatabase
+namespace AbstractTourFirm___ServiceImplementsDataBase
 {
-    public class AbstractTourFirmDbContext : DBContext
+    public class AbstractTourFirmDbContext : DbContext
     {
-        public AbstractDbContext() : base("AbstractDatabase")
+        public AbstractTourFirmDbContext() : base("AbstractTourFirmDatabase")
         {
             //настройки конфигурации для entity
             Configuration.ProxyCreationEnabled = false;

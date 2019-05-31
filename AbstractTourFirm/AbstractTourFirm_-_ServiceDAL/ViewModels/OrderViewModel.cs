@@ -10,7 +10,6 @@ namespace AbstractTourFirm___ServiceDAL.ViewModels
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
-        public string Surmane { get; set; }
         public string Name { set; get; }
         public int TravelId { get; set; }
         public string TravelName { get; set; }

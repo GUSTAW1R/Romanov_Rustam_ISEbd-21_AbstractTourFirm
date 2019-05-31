@@ -12,11 +12,7 @@ namespace AbstractTourFirm___Models
     {
         public int Id { set; get; }
         [Required]
-        public string Surname { set; get; }
-        [Required]
         public string Name { set; get; }
-        [Required]
-        public string E_mail {set; get;}
         [Required]
         public string Login { set; get; }
         [Required]

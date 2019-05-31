@@ -8,7 +8,7 @@ using AbstractTourFirm___ServiceDAL.BindingModels;
 using AbstractTourFirm___ServiceDAL.Interface;
 using AbstractTourFirm___ServiceDAL.ViewModels;
 
-namespace AbstractTourFirm___ServiceImplementsDatabase.Implementations
+namespace AbstractTourFirm___ServiceImplementsDataBase.Implements
 {
     public class CustomerServiceDB : ICustomerService
     {
@@ -24,7 +24,7 @@ namespace AbstractTourFirm___ServiceImplementsDatabase.Implementations
            CustomerViewModel
             {
                 Id = rec.Id,
-                CustomerFIO = rec.CustomerFIO
+                Name = rec.Name
             })
             .ToList();
             return result;
@@ -37,29 +37,31 @@ namespace AbstractTourFirm___ServiceImplementsDatabase.Implementations
                 return new CustomerViewModel
                 {
                     Id = element.Id,
-                    CustomerFIO = element.CustomerFIO
+                    Name = element.Name
                 };
             }
             throw new Exception("Элемент не найден");
         }
         public void AddElement(CustomerBindingModel model)
         {
-            Customer element = context.Customers.FirstOrDefault(rec => rec.CustomerFIO ==
-           model.CustomerFIO);
+            Customer element = context.Customers.FirstOrDefault(rec => rec.Name ==
+           model.Name);
             if (element != null)
             {
                 throw new Exception("Уже есть клиент с таким ФИО");
             }
             context.Customers.Add(new Customer
             {
-                CustomerFIO = model.CustomerFIO
+                Name = model.Name,
+                Login = model.Login,
+                Password = model.Password
             });
             context.SaveChanges();
         }
         public void UpdElement(CustomerBindingModel model)
         {
-            Customer element = context.Customers.FirstOrDefault(rec => rec.CustomerFIO ==
-           model.CustomerFIO && rec.Id != model.Id);
+            Customer element = context.Customers.FirstOrDefault(rec => rec.Name ==
+           model.Name && rec.Id != model.Id);
             if (element != null)
             {
                 throw new Exception("Уже есть клиент с таким ФИО");
@@ -69,7 +71,7 @@ namespace AbstractTourFirm___ServiceImplementsDatabase.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            element.CustomerFIO = model.CustomerFIO;
+            element.Name = model.Name;
             context.SaveChanges();
         }
         public void DelElement(int id)

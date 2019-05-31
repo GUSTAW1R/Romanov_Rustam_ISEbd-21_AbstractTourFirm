@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("AbstractTourFirm_-_ServiceImplementsDataBase")]
+[assembly: AssemblyTitle("AbstractTourFirm_-_ServiceImplementsList")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AbstractTourFirm_-_ServiceImplementsDataBase")]
+[assembly: AssemblyProduct("AbstractTourFirm_-_ServiceImplementsList")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("79dd9cd0-8423-44d7-9126-d294219acf08")]
+[assembly: Guid("d963298f-3c4d-4142-b80c-9bb1c781b50e")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

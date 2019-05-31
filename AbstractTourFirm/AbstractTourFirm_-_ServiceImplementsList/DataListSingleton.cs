@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AbstractTourFirm___ServiceImplementsDatabase.Implementations
+namespace AbstractTourFirm___ServiceImplementsList
 {
-    class TravelServiceDB
+    public class Class1
     {
     }
 }

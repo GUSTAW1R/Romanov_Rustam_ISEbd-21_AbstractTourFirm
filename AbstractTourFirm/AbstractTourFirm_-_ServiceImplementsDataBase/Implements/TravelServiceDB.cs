@@ -3,101 +3,102 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AbstractTourFirm___Models;
+using AbstractTourFirm___ServiceDAL.BindingModels;
 using AbstractTourFirm___ServiceDAL.Interface;
 using AbstractTourFirm___ServiceDAL.ViewModels;
 
-namespace AbstractTourFirm___ServiceImplementsDatabase.Implementations
+namespace AbstractTourFirm___ServiceImplementsDataBase.Implements
 {
-    public class TourServiceDB : ITourService
+    public class TravelServiceDB : ITravelService
     {
         private AbstractTourFirmDbContext context;
-
-        public TourServiceDB(AbstractTourFirmDbContext context)
+        public TravelServiceDB(AbstractTourFirmDbContext context)
         {
             this.context = context;
         }
-        public List<TourViewModel> GetList()
+        public List<TravelViewModel> GetList()
         {
-            List<TourViewModel> result = context.Tours.Select(rec => new
-           TourViewModel
+            List<TravelViewModel> result = context.Travels.Select(rec => new
+           TravelViewModel
             {
                 Id = rec.Id,
-                DocumentsName = rec.DocumentsName,
-                Price = rec.Price,
-                DocumentBlank = context.DocumentBlanks
-            .Where(recPC => recPC.DocumentsId == rec.Id)
-           .Select(recPC => new DocumentBlankViewModel
+                Name_Travel = rec.Name_Travel,
+                Final_Cost = rec.Final_Cost,
+                TourForTravels = context.TourForTravels
+            .Where(recPC => recPC.TravelId == rec.Id)
+           .Select(recPC => new TourForTravelViewModel
            {
                Id = recPC.Id,
-               DocumentsId = recPC.DocumentsId,
-               BlankId = recPC.BlankId,
-               BlankName = recPC.Blank.BlankName,
-               Count = recPC.Count
+               TravelId = recPC.TravelId,
+               TourId = recPC.TourId,
+               Count = recPC.Count,
+               Date_Start = recPC.Date_Start
            })
            .ToList()
             })
             .ToList();
             return result;
         }
-        public DocumentsViewModel GetElement(int id)
+        public TravelViewModel GetElement(int id)
         {
-            Documents element = context.Documents.FirstOrDefault(rec => rec.Id == id);
+            Travel element = context.Travels.FirstOrDefault(rec => rec.Id == id);
             if (element != null)
             {
-                return new DocumentsViewModel
+                return new TravelViewModel
                 {
                     Id = element.Id,
-                    DocumentsName = element.DocumentsName,
-                    Price = element.Price,
-                    DocumentBlank = context.DocumentBlanks
- .Where(recPC => recPC.DocumentsId == element.Id)
- .Select(recPC => new DocumentBlankViewModel
- {
-     Id = recPC.Id,
-     DocumentsId = recPC.DocumentsId,
-     BlankId = recPC.DocumentsId,
-     BlankName = recPC.Blank.BlankName,
-     Count = recPC.Count
- })
- .ToList()
+                Name_Travel = element.Name_Travel,
+                Final_Cost = element.Final_Cost,
+                TourForTravels = context.TourForTravels
+            .Where(recPC => recPC.TravelId == recPC.Id)
+           .Select(recPC => new TourForTravelViewModel
+           {
+               Id = recPC.Id,
+               TravelId = recPC.TravelId,
+               TourId = recPC.TourId,
+               Count = recPC.Count,
+               Date_Start = recPC.Date_Start
+           })
+           .ToList()
                 };
             }
             throw new Exception("Элемент не найден");
         }
-        public void AddElement(DocumentsBindingModel model)
+        public void AddElement(TravelBindingModel model)
         {
             using (var transaction = context.Database.BeginTransaction())
             {
                 try
                 {
-                    Documents element = context.Documents.FirstOrDefault(rec =>
-                   rec.DocumentsName == model.DocumentsName);
+                    Travel element = context.Travels.FirstOrDefault(rec =>
+                   rec.Name_Travel == model.Name_Travel);
                     if (element != null)
                     {
                         throw new Exception("Уже есть изделие с таким названием");
                     }
-                    element = new Documents
+                    element = new Travel
                     {
-                        DocumentsName = model.DocumentsName,
-                        Price = model.Price
+                        Name_Travel = model.Name_Travel,
+                        Final_Cost = model.Final_Cost
                     };
-                    context.Documents.Add(element);
+                    context.Travels.Add(element);
                     context.SaveChanges();
                     // убираем дубли по компонентам
-                    var groupComponents = model.DocumentBlank
-                     .GroupBy(rec => rec.BlankId)
+                    var groupComponents = model.TourForTravels
+                     .GroupBy(rec => rec.TourId)
                     .Select(rec => new
                     {
-                        BlankId = rec.Key,
+                        TourId = rec.Key,
                         Count = rec.Sum(r => r.Count)
                     });
                     // добавляем компоненты
                     foreach (var groupComponent in groupComponents)
                     {
-                        context.DocumentBlanks.Add(new DocumentBlank
+                        context.TourForTravels.Add(new TourForTravel
                         {
-                            DocumentsId = element.Id,
-                            BlankId = groupComponent.BlankId,
+                            TravelId = element.Id,
+                            TourId = groupComponent.TourId,
                             Count = groupComponent.Count
                         });
                         context.SaveChanges();
@@ -111,44 +112,44 @@ namespace AbstractTourFirm___ServiceImplementsDatabase.Implementations
                 }
             }
         }
-        public void UpdElement(DocumentsBindingModel model)
+        public void UpdElement(TravelBindingModel model)
         {
             using (var transaction = context.Database.BeginTransaction())
             {
                 try
                 {
-                    Documents element = context.Documents.FirstOrDefault(rec =>
-                   rec.DocumentsName == model.DocumentsName && rec.Id != model.Id);
+                    Travel element = context.Travels.FirstOrDefault(rec =>
+                   rec.Name_Travel == model.Name_Travel && rec.Id != model.Id);
                     if (element != null)
                     {
                         throw new Exception("Уже есть изделие с таким названием");
                     }
-                    element = context.Documents.FirstOrDefault(rec => rec.Id == model.Id);
+                    element = context.Travels.FirstOrDefault(rec => rec.Id == model.Id);
                     if (element == null)
                     {
                         throw new Exception("Элемент не найден");
                     }
-                    element.DocumentsName = model.DocumentsName;
-                    element.Price = model.Price;
+                    element.Name_Travel = model.Name_Travel;
+                    element.Final_Cost = model.Final_Cost;
                     context.SaveChanges();
                     // обновляем существуюущие компоненты
-                    var compIds = model.DocumentBlank.Select(rec =>
-                   rec.BlankId).Distinct();
-                    var updateComponents = context.DocumentBlanks.Where(rec =>
-                   rec.BlankId == model.Id && compIds.Contains(rec.BlankId));
+                    var compIds = model.TourForTravels.Select(rec =>
+                   rec.TourId).Distinct();
+                    var updateComponents = context.TourForTravels.Where(rec =>
+                   rec.TourId == model.Id && compIds.Contains(rec.TourId));
                     foreach (var updateComponent in updateComponents)
                     {
                         updateComponent.Count =
-                       model.DocumentBlank.FirstOrDefault(rec => rec.Id == updateComponent.Id).Count;
+                       model.TourForTravels.FirstOrDefault(rec => rec.Id == updateComponent.Id).Count;
                     }
                     context.SaveChanges();
-                    context.DocumentBlanks.RemoveRange(context.DocumentBlanks.Where(rec =>
-                    rec.BlankId == model.Id && !compIds.Contains(rec.BlankId)));
+                    context.TourForTravels.RemoveRange(context.TourForTravels.Where(rec =>
+                    rec.TourId == model.Id && !compIds.Contains(rec.TourId)));
                     context.SaveChanges();
                     // новые записи
-                    var groupComponents = model.DocumentBlank
+                    var groupComponents = model.TourForTravels
                     .Where(rec => rec.Id == 0)
-                   .GroupBy(rec => rec.BlankId)
+                   .GroupBy(rec => rec.TourId)
                    .Select(rec => new
                    {
                        ComponentId = rec.Key,
@@ -156,9 +157,9 @@ namespace AbstractTourFirm___ServiceImplementsDatabase.Implementations
                    });
                     foreach (var groupComponent in groupComponents)
                     {
-                        DocumentBlank elementPC =
-                       context.DocumentBlanks.FirstOrDefault(rec => rec.BlankId == model.Id &&
-                       rec.BlankId == groupComponent.ComponentId);
+                        TourForTravel elementPC =
+                       context.TourForTravels.FirstOrDefault(rec => rec.TourId == model.Id &&
+                       rec.TourId == groupComponent.ComponentId);
                         if (elementPC != null)
                         {
                             elementPC.Count += groupComponent.Count;
@@ -166,10 +167,10 @@ namespace AbstractTourFirm___ServiceImplementsDatabase.Implementations
                         }
                         else
                         {
-                            context.DocumentBlanks.Add(new DocumentBlank
+                            context.TourForTravels.Add(new TourForTravel
                             {
-                                DocumentsId = model.Id,
-                                BlankId = groupComponent.ComponentId,
+                                TravelId = model.Id,
+                                TourId = groupComponent.ComponentId,
                                 Count = groupComponent.Count
                             });
                             context.SaveChanges();
@@ -190,14 +191,14 @@ namespace AbstractTourFirm___ServiceImplementsDatabase.Implementations
             {
                 try
                 {
-                    Documents element = context.Documents.FirstOrDefault(rec => rec.Id ==
+                    Travel element = context.Travels.FirstOrDefault(rec => rec.Id ==
                    id);
                     if (element != null)
                     {
                         // удаяем записи по компонентам при удалении изделия
-                        context.DocumentBlanks.RemoveRange(context.DocumentBlanks.Where(rec =>
-                        rec.DocumentsId == id));
-                        context.Documents.Remove(element);
+                        context.TourForTravels.RemoveRange(context.TourForTravels.Where(rec =>
+                        rec.TravelId == id));
+                        context.Travels.Remove(element);
                         context.SaveChanges();
                     }
                     else

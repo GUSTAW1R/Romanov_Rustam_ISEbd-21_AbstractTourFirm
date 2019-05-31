@@ -15,6 +15,5 @@ namespace AbstractTourFirm___ServiceDAL.Interface
         void AddElement(TourBindingModel model);
         void UpdElement(TourBindingModel model);
         void DelElement(int id);
-        bool GetCreditInfo(int id);
     }
 }

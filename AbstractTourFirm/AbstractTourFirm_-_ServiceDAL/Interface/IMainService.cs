@@ -13,7 +13,9 @@ namespace AbstractTourFirm___ServiceDAL.Interface
         List<OrderViewModel> GetList();
         void CreateOrder(OrderBindingModel model);
         void TakeOrderInWork(OrderBindingModel model);
+        void TakeOrderInCredit(OrderBindingModel model);
         void FinishOrder(OrderBindingModel model);
         void PayOrder(OrderBindingModel model);
+        void GoTravel(OrderBindingModel model);
     }
 }
