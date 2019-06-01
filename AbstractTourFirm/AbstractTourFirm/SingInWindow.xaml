@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:AbstractTourFirm"
         mc:Ignorable="d"
         Title="SingInWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Loaded="Grid_Loaded">
+        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Height="30" Margin="171,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="390"/>
+        <TextBox x:Name="textBoxPass" HorizontalAlignment="Left" Height="30" Margin="171,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="390"/>
+        <Label Content="Login:" HorizontalAlignment="Left" Height="30" Margin="107,109,0,0" VerticalAlignment="Top" Width="47"/>
+        <Label Content="Password:" HorizontalAlignment="Left" Height="30" Margin="94,214,0,0" VerticalAlignment="Top" Width="60"/>
+        <Button Content="Войти" HorizontalAlignment="Left" Height="36" Margin="107,285,0,0" VerticalAlignment="Top" Width="154" Click="Button_Click"/>
+        <Button Content="Регистрация" HorizontalAlignment="Left" Height="36" Margin="422,285,0,0" VerticalAlignment="Top" Width="154" Click="Button_Click_1"/>
+
     </Grid>
 </Window>

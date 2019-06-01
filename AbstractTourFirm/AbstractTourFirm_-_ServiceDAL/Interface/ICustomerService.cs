@@ -12,8 +12,8 @@ namespace AbstractTourFirm___ServiceDAL.Interface
     {
         List<CustomerViewModel> GetList();
         CustomerViewModel GetElement(int id);
-        void AddElement(CustomerBindingModel model);
-        void UpdElement(CustomerBindingModel model);
-        void DelElement(int id);
+        void AddNewCustomer(CustomerBindingModel model);
+        void CheckCustomer(CustomerBindingModel model);
+        void DeleteCustomer(int id);
     }
 }

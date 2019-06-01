@@ -24,5 +24,40 @@ namespace AbstractTourFirm
         {
             InitializeComponent();
         }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonCreateOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonConfirmOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonCredit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonPayCredit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonPayOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonGoTravel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -24,7 +24,8 @@ namespace AbstractTourFirm___ServiceImplementsDataBase.Implements
            CustomerViewModel
             {
                 Id = rec.Id,
-                Name = rec.Name
+                Name = rec.Name,
+                Login = rec.Login
             })
             .ToList();
             return result;
@@ -37,12 +38,13 @@ namespace AbstractTourFirm___ServiceImplementsDataBase.Implements
                 return new CustomerViewModel
                 {
                     Id = element.Id,
-                    Name = element.Name
+                    Name = element.Name,
+                    Login = element.Login
                 };
             }
             throw new Exception("Элемент не найден");
         }
-        public void AddElement(CustomerBindingModel model)
+        public void AddNewCustomer(CustomerBindingModel model)
         {
             Customer element = context.Customers.FirstOrDefault(rec => rec.Name ==
            model.Name);
@@ -58,23 +60,17 @@ namespace AbstractTourFirm___ServiceImplementsDataBase.Implements
             });
             context.SaveChanges();
         }
-        public void UpdElement(CustomerBindingModel model)
+        public void CheckCustomer(CustomerBindingModel model)
         {
-            Customer element = context.Customers.FirstOrDefault(rec => rec.Name ==
-           model.Name && rec.Id != model.Id);
-            if (element != null)
-            {
-                throw new Exception("Уже есть клиент с таким ФИО");
-            }
-            element = context.Customers.FirstOrDefault(rec => rec.Id == model.Id);
+            Customer element = context.Customers.FirstOrDefault(rec => rec.Login ==
+           model.Login && rec.Id == model.Id && rec.Password == model.Password);
             if (element == null)
             {
-                throw new Exception("Элемент не найден");
+                throw new Exception("Клиент с таким логином и паролем отсутствует");
             }
-            element.Name = model.Name;
             context.SaveChanges();
         }
-        public void DelElement(int id)
+        public void DeleteCustomer(int id)
         {
             Customer element = context.Customers.FirstOrDefault(rec => rec.Id == id);
             if (element != null)

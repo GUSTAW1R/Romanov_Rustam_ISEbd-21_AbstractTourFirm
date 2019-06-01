@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AbstractTourFirm"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="882.06" Width="1202.159">
+    <Grid Loaded="Grid_Loaded">
+        <DataGrid HorizontalAlignment="Left" Height="831" Margin="10,10,0,0" VerticalAlignment="Top" Width="919"/>
+        <Button x:Name="buttonCreateOrder" Content="Создать путешествие" HorizontalAlignment="Left" Height="80" Margin="957,10,0,0" VerticalAlignment="Top" Width="213" Click="ButtonCreateOrder_Click"/>
+        <Button x:Name="buttonConfirmOrder" Content="Потвердить путешествие" HorizontalAlignment="Left" Height="80" Margin="957,155,0,0" VerticalAlignment="Top" Width="213" Click="ButtonConfirmOrder_Click"/>
+        <Button x:Name="buttonCredit" Content="Взять кредит на путешествие" HorizontalAlignment="Left" Height="80" Margin="957,315,0,0" VerticalAlignment="Top" Width="213" Click="ButtonCredit_Click"/>
+        <Button x:Name="buttonPayCredit" Content="Оплатить кредит на путешествие" HorizontalAlignment="Left" Height="80" Margin="957,464,0,0" VerticalAlignment="Top" Width="213" Click="ButtonPayCredit_Click"/>
+        <Button x:Name="buttonPayOrder" Content="Отплатить путешествие" HorizontalAlignment="Left" Height="80" Margin="957,607,0,0" VerticalAlignment="Top" Width="213" Click="ButtonPayOrder_Click"/>
+        <Button x:Name="buttonGoTravel" Content="Отправиться в путешествие" HorizontalAlignment="Left" Height="80" Margin="957,761,0,0" VerticalAlignment="Top" Width="213" Click="ButtonGoTravel_Click"/>
+
     </Grid>
 </Window>

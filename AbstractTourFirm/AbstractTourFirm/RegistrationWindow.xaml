@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AbstractTourFirm"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="RegistrationWindow" Height="474.444" Width="474.444">
+    <Grid Loaded="Grid_Loaded">
+        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Height="24" Margin="136,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="304"/>
+        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Height="24" Margin="136,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="304"/>
+        <TextBox x:Name="textBoxPass" HorizontalAlignment="Left" Height="24" Margin="136,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="304"/>
+        <Label Content="Введите имя:" HorizontalAlignment="Left" Height="24" Margin="49,70,0,0" VerticalAlignment="Top" Width="82" RenderTransformOrigin="0.9,0.588"/>
+        <Label Content="Введите логин:" HorizontalAlignment="Left" Height="24" Margin="39,167,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label Content="Введите пароль:" HorizontalAlignment="Left" Height="24" Margin="30,266,0,0" VerticalAlignment="Top" Width="101"/>
+        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Height="37" Margin="98,366,0,0" VerticalAlignment="Top" Width="119" Click="ButtonAdd_Click"/>
+        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Height="37" Margin="282,366,0,0" VerticalAlignment="Top" Width="119" Click="ButtonCancel_Click"/>
+
     </Grid>
 </Window>
